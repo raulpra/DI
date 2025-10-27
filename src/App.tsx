@@ -4,10 +4,18 @@ function App() {
   const [local, setLocal] = useState(0);
   const [visitante, setVisitante] = useState(0);
   const [finalizado, setFinalizado] = useState<boolean>(false);
+  const [nombreColegiado, setNombreColegiado] = useState<string>("");
   const reiniciar = () => {
     setLocal(0);
     setVisitante(0);
     setFinalizado(false);
+    setNombreColegiado("");
+  };
+
+  const handleNombreColegiadoChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setNombreColegiado(e.target.value);
   };
 
   return (
@@ -95,6 +103,35 @@ function App() {
             >
               Finalizar partido
             </button>
+          </div>
+
+          <div style={{ marginBottom: "20px" }}>
+            <p
+              style={{
+                marginTop: "30px",
+                marginBottom: "6px",
+                fontWeight: "500",
+                color: nombreColegiado ? "#1d3557" : "#e63946",
+              }}
+            >
+              {nombreColegiado
+                ? `👨‍⚖️ Colegiado: ${nombreColegiado}`
+                : "⚠️ Colegiado pendiente de asignar"}
+            </p>
+            <input
+              type="text"
+              value={nombreColegiado}
+              onChange={handleNombreColegiadoChange}
+              placeholder="Nombre del colegiado..."
+              style={{
+                padding: "8px",
+                borderRadius: "6px",
+                border: "1px solid #ccc",
+                width: "220px",
+                textAlign: "center",
+                outline: "none",
+              }}
+            />
           </div>
         </div>
       </div>
