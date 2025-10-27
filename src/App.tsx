@@ -3,6 +3,10 @@ import { useState } from "react";
 function App() {
   const [local, setLocal] = useState(0);
   const [visitante, setVisitante] = useState(0);
+  const reiniciar = () => {
+    setLocal(0);
+    setVisitante(0);
+  };
 
   return (
     <>
@@ -57,6 +61,22 @@ function App() {
               ? "🏠 Gana el equipo local"
               : "🛫 Gana el visitante"}
           </h4>
+          <button
+            onClick={reiniciar}
+            style={{
+              marginTop: "20px",
+              backgroundColor: "#e63946",
+              color: "white",
+              border: "none",
+              borderRadius: "8px",
+              padding: "10px 20px",
+              fontSize: "16px",
+              cursor: "pointer",
+              transition: "background-color 0.3s",
+            }}
+          >
+            Reiniciar marcador
+          </button>
         </div>
       </div>
     </>
