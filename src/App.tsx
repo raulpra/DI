@@ -50,6 +50,13 @@ function App() {
           >
             Resultado: {local} - {visitante}
           </h2>
+          <h4>
+            {local === visitante
+              ? "¡Empate!"
+              : local > visitante
+              ? "🏠 Gana el equipo local"
+              : "🛫 Gana el visitante"}
+          </h4>
         </div>
       </div>
     </>
