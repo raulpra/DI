@@ -3,9 +3,11 @@ import { useState } from "react";
 function App() {
   const [local, setLocal] = useState(0);
   const [visitante, setVisitante] = useState(0);
+  const [finalizado, setFinalizado] = useState<boolean>(false);
   const reiniciar = () => {
     setLocal(0);
     setVisitante(0);
+    setFinalizado(false);
   };
 
   return (
@@ -49,7 +51,8 @@ function App() {
 
           <h2
             style={{
-              color: "#000",
+              color: finalizado ? "#007BFF" : "#000",
+              transition: "color 0.3s ease",
             }}
           >
             Resultado: {local} - {visitante}
@@ -77,6 +80,22 @@ function App() {
           >
             Reiniciar marcador
           </button>
+          <div style={{ marginTop: "20px" }}>
+            <button
+              onClick={() => setFinalizado(true)}
+              style={{
+                backgroundColor: "#007BFF",
+                color: "white",
+                border: "none",
+                borderRadius: "8px",
+                padding: "10px 20px",
+                marginRight: "10px",
+                cursor: "pointer",
+              }}
+            >
+              Finalizar partido
+            </button>
+          </div>
         </div>
       </div>
     </>
