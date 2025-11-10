@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Title from "../components/Title";
 
 function PaginaMarcador() {
   const [local, setLocal] = useState(0);
@@ -41,7 +42,7 @@ function PaginaMarcador() {
             maxWidth: "360px",
           }}
         >
-          <h1 style={{ marginBottom: "15px" }}>🏀 Marcador Reactivo</h1>
+          <Title text="🏀 Marcador Reactivo" />
 
           <div style={{ marginBottom: "20px", textAlign: "center" }}>
             <h3>Local: {local}</h3>
