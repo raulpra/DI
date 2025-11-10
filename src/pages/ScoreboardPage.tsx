@@ -2,6 +2,7 @@ import { useState } from "react";
 import Title from "../components/Title";
 import MatchResult from "../components/MatchResult";
 import ActionButton from "../components/ActionButton";
+import TeamScore from "../components/TeamScore";
 
 function PaginaMarcador() {
   const [local, setLocal] = useState(0);
@@ -46,19 +47,13 @@ function PaginaMarcador() {
         >
           <Title text="🏀 Marcador Reactivo" />
 
-          <div style={{ marginBottom: "20px", textAlign: "center" }}>
-            <h3>Local: {local}</h3>
-            <button onClick={() => setLocal(local + 1)}>+1</button>
-            <button onClick={() => setLocal(local + 2)}>+2</button>
-            <button onClick={() => setLocal(local + 3)}>+3</button>
-          </div>
+          <TeamScore nombre="Local" puntos={local} onScoreChange={setLocal} />
 
-          <div style={{ marginBottom: "20px", textAlign: "center" }}>
-            <h3>Visitante: {visitante}</h3>
-            <button onClick={() => setVisitante(visitante + 1)}>+1</button>
-            <button onClick={() => setVisitante(visitante + 2)}>+2</button>
-            <button onClick={() => setVisitante(visitante + 3)}>+3</button>
-          </div>
+          <TeamScore
+            nombre="Visitante"
+            puntos={visitante}
+            onScoreChange={setVisitante}
+          />
 
           <MatchResult
             local={local}
