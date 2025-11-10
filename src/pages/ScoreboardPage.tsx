@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Title from "../components/Title";
 import MatchResult from "../components/MatchResult";
+import ActionButton from "../components/ActionButton";
 
 function PaginaMarcador() {
   const [local, setLocal] = useState(0);
@@ -64,38 +65,16 @@ function PaginaMarcador() {
             visitante={visitante}
             finalizado={finalizado}
           />
-          <button
+          <ActionButton
             onClick={reiniciar}
-            style={{
-              marginTop: "20px",
-              backgroundColor: "#e63946",
-              color: "white",
-              border: "none",
-              borderRadius: "8px",
-              padding: "10px 20px",
-              fontSize: "16px",
-              cursor: "pointer",
-              transition: "background-color 0.3s",
-            }}
-          >
-            Reiniciar marcador
-          </button>
-          <div style={{ marginTop: "20px" }}>
-            <button
-              onClick={() => setFinalizado(true)}
-              style={{
-                backgroundColor: "#007BFF",
-                color: "white",
-                border: "none",
-                borderRadius: "8px",
-                padding: "10px 20px",
-                marginRight: "10px",
-                cursor: "pointer",
-              }}
-            >
-              Finalizar partido
-            </button>
-          </div>
+            text="Reiniciar marcador"
+            color="#e63946"
+          />
+
+          <ActionButton
+            onClick={() => setFinalizado(true)}
+            text="Finalizar partido"
+          />
 
           <div style={{ marginBottom: "20px" }}>
             <p
