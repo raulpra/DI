@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Title from "../components/Title";
+import MatchResult from "../components/MatchResult";
 
 function PaginaMarcador() {
   const [local, setLocal] = useState(0);
@@ -58,21 +59,11 @@ function PaginaMarcador() {
             <button onClick={() => setVisitante(visitante + 3)}>+3</button>
           </div>
 
-          <h2
-            style={{
-              color: finalizado ? "#007BFF" : "#000",
-              transition: "color 0.3s ease",
-            }}
-          >
-            Resultado: {local} - {visitante}
-          </h2>
-          <h4>
-            {local === visitante
-              ? "¡Empate!"
-              : local > visitante
-              ? "🏠 Gana el equipo local"
-              : "🛫 Gana el visitante"}
-          </h4>
+          <MatchResult
+            local={local}
+            visitante={visitante}
+            finalizado={finalizado}
+          />
           <button
             onClick={reiniciar}
             style={{
