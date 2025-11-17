@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
 import Title from "../components/Title";
-
-interface User {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-}
+import type { User } from "../types/user";
 
 export default function UsersPage() {
   const [users, setUsers] = useState<User[]>([]);
