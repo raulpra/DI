@@ -1,10 +1,13 @@
 import { useParams, Link } from "react-router-dom";
 import { teams } from "../data/teams";
 import Title from "../components/Title";
+import NotFoundPage from "./NotFoundPage";
 
 export default function TeamDetailPage() {
   const { id } = useParams();
-  const teamId = Number(id);
+  const teamId = id ? Number(id) : NaN;
+  if (Number.isNaN(teamId)) return <NotFoundPage />;
+
   const team = teams.find((t) => t.id === teamId);
 
   if (!team) {

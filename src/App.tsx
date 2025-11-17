@@ -6,6 +6,7 @@ import Home from "./pages/HomePage";
 import Scoreboard from "./pages/ScoreboardPage";
 import Teams from "./pages/TeamsPage";
 import TeamDetail from "./pages/TeamDetailPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="/score" element={<Scoreboard />} />
            <Route path="/teams" element={<Teams />} />
            <Route path="/teams/:id" element={<TeamDetail />} />
+            <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
       <Footer />
