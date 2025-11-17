@@ -5,6 +5,7 @@ import Navigation from "./components/Navigation";
 import Home from "./pages/HomePage";
 import Scoreboard from "./pages/ScoreboardPage";
 import Teams from "./pages/TeamsPage";
+import TeamDetail from "./pages/TeamDetailPage";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/score" element={<Scoreboard />} />
            <Route path="/teams" element={<Teams />} />
+           <Route path="/teams/:id" element={<TeamDetail />} />
         </Routes>
       </BrowserRouter>
       <Footer />

@@ -1,11 +1,7 @@
 import Title from "../components/Title";
+import { teams } from "../data/teams";
 
 export default function TeamsPage() {
-  const teams = [
-    { id: 1, name: "Tigres del Norte" },
-    { id: 2, name: "Leones del Este" },
-    { id: 3, name: "Halcones Rojos" },
-  ];
 
   return (
     <div
@@ -21,20 +17,20 @@ export default function TeamsPage() {
     >
       <Title text="⛹🏼‍♀️ Equipos" />
 
-
       <ul style={{ listStyle: "none", padding: 0 }}>
-        {teams.map((t) => (
+        {teams.map((team) => (
           <li
-            key={t.id}
+            key={team.id}
             style={{
               padding: "10px 0",
             }}
           >
             <a
-              href="#"
+              href={`/teams/${team.id}`}
             >
-              {t.name}
+              {team.name}
             </a>
+            <p>{team.city}, {team.country}</p>
           </li>
         ))}
       </ul>
