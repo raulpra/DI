@@ -20,6 +20,15 @@ export default function UsersPage() {
       });
   }, []);
 
+  useEffect(() => {
+    console.log("Users actualizado:", users);
+    console.table(users);
+    console.group("Ciclo de vida del componente");
+    console.log("Render inicial");
+    console.log("Users", users);
+    console.groupEnd();
+  }, [users]);
+
   if (loading) return <p>Cargando usuarios...</p>;
   if (error) return <p>{error}</p>;
 
