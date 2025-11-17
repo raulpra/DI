@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { teams } from "../data/teams";
+import Title from "../components/Title";
 
 export default function TeamDetailPage() {
   const { id } = useParams();
@@ -21,9 +22,7 @@ export default function TeamDetailPage() {
         }}
       >
         <h2>Equipo no encontrado 😥</h2>
-        <Link to="/teams">
-          ← Volver
-        </Link>
+        <Link to="/teams">← Volver</Link>
       </div>
     );
   }
@@ -40,33 +39,37 @@ export default function TeamDetailPage() {
         textAlign: "center",
       }}
     >
-      <h1
+      <Title text={"Detalle del Equipo " + team.name} />
+      <p
         style={{
-          fontSize: "2rem",
-          marginBottom: "18px",
-          color: "#1a1a1a",
+          marginBottom: "20px",
         }}
       >
-        Detalle del Equipo {team.name}
-      </h1>
-      <p style={{
-        marginBottom: "20px"
-      }}>{team.description}</p>
+        {team.description}
+      </p>
 
       <div style={{ color: "#555", fontSize: "1.1rem", marginBottom: "24px" }}>
-        <p><strong>Ciudad:</strong> {team.city}</p>
-        <p><strong>País:</strong> {team.country}</p>
-        <p><strong>Fundado:</strong> {team.founded}</p>
-        <p><strong>Estadio:</strong> {team.stadium}</p>
-        <p><strong>Entrenador:</strong> {team.coach}</p>
-        <p><strong>Jugadores:</strong> {team.playersCount}</p>
+        <p>
+          <strong>Ciudad:</strong> {team.city}
+        </p>
+        <p>
+          <strong>País:</strong> {team.country}
+        </p>
+        <p>
+          <strong>Fundado:</strong> {team.founded}
+        </p>
+        <p>
+          <strong>Estadio:</strong> {team.stadium}
+        </p>
+        <p>
+          <strong>Entrenador:</strong> {team.coach}
+        </p>
+        <p>
+          <strong>Jugadores:</strong> {team.playersCount}
+        </p>
       </div>
 
-      <a
-        href="/teams"
-      >
-        ← Volver a equipos
-      </a>
+      <a href="/teams">← Volver a equipos</a>
     </div>
   );
 }
