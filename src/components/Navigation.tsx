@@ -17,36 +17,39 @@ export default function Navigation() {
         >
           <NavLink
             to="/"
-            style={{
+            style={({ isActive }) => ({
               color: "white",
               textDecoration: "none",
               padding: "6px 12px",
               borderRadius: "6px",
-            }}
+              backgroundColor: isActive ? "rgba(255,255,255,0.2)" : "transparent",
+            })}
           >
             Home
           </NavLink>
 
           <NavLink
             to="/score"
-            style={{
+            style={({ isActive }) => ({
               color: "white",
               textDecoration: "none",
               padding: "6px 12px",
               borderRadius: "6px",
-            }}
+              backgroundColor: isActive ? "rgba(255,255,255,0.2)" : "transparent",
+            })}
           >
             Marcador
           </NavLink>
 
           <NavLink
             to="/teams"
-            style={{
+            style={({ isActive }) => ({
               color: "white",
               textDecoration: "none",
               padding: "6px 12px",
               borderRadius: "6px",
-            }}
+              backgroundColor: isActive ? "rgba(255,255,255,0.2)" : "transparent",
+            })}
           >
             Equipos
           </NavLink>
