@@ -72,7 +72,7 @@ export default function TeamDetailPage() {
         </p>
       </div>
 
-      <a href="/teams">← Volver a equipos</a>
+      <Link to="/teams">← Volver a equipos</Link>
     </div>
   );
 }
