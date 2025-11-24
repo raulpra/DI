@@ -4,25 +4,32 @@ import { useState } from "react";
 
 export default function TeamsPage() {
   const [query, setQuery] = useState("");
+  const [cityFilter, setCityFilter] = useState("all");
+
+  const cityOptions = Array.from(new Set(teams.map((team) => team.city))).sort();
 
   const normalizedQuery = query.trim().toLowerCase();
-  const filteredTeams = normalizedQuery
-    ? teams.filter((team) => {
-        const searchableText = [
-          team.name,
-          team.city,
-          team.country,
-          team.coach,
-          team.stadium,
-          String(team.founded),
-          team.description,
-        ]
-          .join(" ")
-          .toLowerCase();
+  const filteredTeams = teams.filter((team) => {
+    if (cityFilter !== "all" && team.city !== cityFilter) {
+      return false;
+    }
 
-        return searchableText.includes(normalizedQuery);
-      })
-    : teams;
+    if (!normalizedQuery) return true;
+
+    const searchableText = [
+      team.name,
+      team.city,
+      team.country,
+      team.coach,
+      team.stadium,
+      String(team.founded),
+      team.description,
+    ]
+      .join(" ")
+      .toLowerCase();
+
+    return searchableText.includes(normalizedQuery);
+  });
 
   return (
     <div
@@ -44,6 +51,7 @@ export default function TeamsPage() {
           alignItems: "center",
           gap: "10px",
           marginBottom: "20px",
+          flexWrap: "wrap",
         }}
       >
         <input
@@ -52,6 +60,7 @@ export default function TeamsPage() {
           placeholder="Buscar por nombre, ciudad, país, entrenador..."
           style={{
             flex: 1,
+            minWidth: "220px",
             padding: "12px 14px",
             borderRadius: "10px",
             border: "1px solid #d0d7de",
@@ -59,6 +68,25 @@ export default function TeamsPage() {
             fontSize: "1rem",
           }}
         />
+        <select
+          value={cityFilter}
+          onChange={(event) => setCityFilter(event.target.value)}
+          style={{
+            padding: "12px 14px",
+            borderRadius: "10px",
+            border: "1px solid #d0d7de",
+            background: "white",
+            fontSize: "1rem",
+            minWidth: "170px",
+          }}
+        >
+          <option value="all">Todas las ciudades</option>
+          {cityOptions.map((city) => (
+            <option key={city} value={city}>
+              {city}
+            </option>
+          ))}
+        </select>
         {query && (
           <button
             type="button"
