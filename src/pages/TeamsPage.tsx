@@ -6,12 +6,17 @@ export default function TeamsPage() {
   const [query, setQuery] = useState("");
   const [cityFilter, setCityFilter] = useState("all");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+  const [onlyLargeTeams, setOnlyLargeTeams] = useState(false);
 
   const cityOptions = Array.from(new Set(teams.map((team) => team.city))).sort();
 
   const normalizedQuery = query.trim().toLowerCase();
   const filteredTeams = teams.filter((team) => {
     if (cityFilter !== "all" && team.city !== cityFilter) {
+      return false;
+    }
+
+    if (onlyLargeTeams && team.playersCount < 13) {
       return false;
     }
 
@@ -93,6 +98,27 @@ export default function TeamsPage() {
             </option>
           ))}
         </select>
+        <label
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "6px",
+            padding: "8px 10px",
+            border: "1px solid #d0d7de",
+            borderRadius: "10px",
+            background: "white",
+            cursor: "pointer",
+            fontSize: "0.95rem",
+          }}
+        >
+          <input
+            type="checkbox"
+            checked={onlyLargeTeams}
+            onChange={(event) => setOnlyLargeTeams(event.target.checked)}
+            style={{ cursor: "pointer" }}
+          />
+          Solo equipos con 13+ jugadores
+        </label>
         <select
           value={sortOrder}
           onChange={(event) => setSortOrder(event.target.value as "asc" | "desc")}
@@ -144,7 +170,7 @@ export default function TeamsPage() {
                 {team.city}, {team.country}
               </p>
               <p style={{ margin: 0, color: "#7a7a7a", fontSize: "0.95rem" }}>
-                Entrenador: {team.coach} · Fundado: {team.founded}
+                Entrenador: {team.coach} · Fundado: {team.founded} · Jugadores: {team.playersCount}
               </p>
             </li>
           ))}
