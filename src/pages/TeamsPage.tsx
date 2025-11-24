@@ -5,6 +5,7 @@ import { useState } from "react";
 export default function TeamsPage() {
   const [query, setQuery] = useState("");
   const [cityFilter, setCityFilter] = useState("all");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
   const cityOptions = Array.from(new Set(teams.map((team) => team.city))).sort();
 
@@ -29,6 +30,11 @@ export default function TeamsPage() {
       .toLowerCase();
 
     return searchableText.includes(normalizedQuery);
+  });
+
+  const sortedTeams = [...filteredTeams].sort((a, b) => {
+    const comparison = a.name.localeCompare(b.name);
+    return sortOrder === "asc" ? comparison : -comparison;
   });
 
   return (
@@ -87,6 +93,21 @@ export default function TeamsPage() {
             </option>
           ))}
         </select>
+        <select
+          value={sortOrder}
+          onChange={(event) => setSortOrder(event.target.value as "asc" | "desc")}
+          style={{
+            padding: "12px 14px",
+            borderRadius: "10px",
+            border: "1px solid #d0d7de",
+            background: "white",
+            fontSize: "1rem",
+            minWidth: "170px",
+          }}
+        >
+          <option value="asc">Ascendente (A-Z)</option>
+          <option value="desc">Descendente (Z-A)</option>
+        </select>
         {query && (
           <button
             type="button"
@@ -110,7 +131,7 @@ export default function TeamsPage() {
         </p>
       ) : (
         <ul style={{ listStyle: "none", padding: 0 }}>
-          {filteredTeams.map((team) => (
+          {sortedTeams.map((team) => (
             <li
               key={team.id}
               style={{
